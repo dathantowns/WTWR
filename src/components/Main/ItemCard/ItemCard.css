@@ -1,14 +1,10 @@
 .item-card {
-  max-height: 326px;
+  height: calc((96vh - 80px - 63px) / 2);
+  max-width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.3);
   position: relative;
   border-radius: 12px;
-}
-
-.item-card__img {
-  max-height: 326px;
-  position: relative;
-  border-radius: 12px;
+  background-size: cover;
 }
 
 .item-card__title {
@@ -18,7 +14,8 @@
   border-radius: 4px;
   padding: 2px 12px;
   top: 15px;
-  left: 125px;
+  left: 50%;
+  transform: translateX(-50%);
   color: rgba(0, 0, 0, 0.6);
   font-size: 16px;
 }
