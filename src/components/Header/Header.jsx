@@ -2,7 +2,7 @@ import headerLogo from "../../images/Logo.png";
 import headerAvatar from "../../images/headerTerrenceAvatar.png";
 import "./Header.css";
 
-export default function Header() {
+export default function Header(props) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -19,7 +19,7 @@ export default function Header() {
       <div className="header">
         <div className="header__date-logo">
           <img src={headerLogo} alt="headerlogo" className="header__logo" />
-          {`${currentDate}, Bakersfield, CA`}
+          {`${currentDate}, ${props.location}`}
         </div>
 
         <div className="header__menu">
