@@ -18,7 +18,7 @@ const defaultClothingItems = [
   {
     _id: 2,
     name: "Jacket",
-    weather: "cold",
+    weather: "warm",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad",
   },
   {

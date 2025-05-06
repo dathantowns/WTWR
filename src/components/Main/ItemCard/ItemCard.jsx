@@ -2,7 +2,8 @@ import "./ItemCard.css";
 
 export default function ItemCard(props) {
   function handleCardClick(e) {
-    console.log(e.target);
+    props.setCardData([props.name, props.link]);
+    props.setSeePreview(true);
   }
 
   return (

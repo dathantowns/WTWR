@@ -5,6 +5,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import { requestWeatherInfo } from "../../utils/weatherApi";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
 
 function App() {
   const [weather, setWeather] = useState();
@@ -13,10 +14,12 @@ function App() {
   const [seeModal, setSeeModal] = useState(false);
   const [seePreview, setSeePreview] = useState(false);
   const [selected, setSelected] = useState("Hot");
+  const [cardData, setCardData] = useState([]);
   const options = ["Hot", "Warm", "Cold"];
 
   const onClose = () => {
     setSeeModal(false);
+    setSeePreview(false);
   };
 
   useEffect(() => {
@@ -30,7 +33,13 @@ function App() {
   return (
     <>
       <Header location={location} setSeeModal={setSeeModal} />
-      <Main temp={temp} weather={weather} />
+      <Main
+        temp={temp}
+        weather={weather}
+        setSeePreview={setSeePreview}
+        setCardData={setCardData}
+        setSeePreview={setSeePreview}
+      />
       <Footer />
       <ModalWithForm
         closeModal={onClose}
@@ -84,6 +93,12 @@ function App() {
           </div>
         </ul>
       </ModalWithForm>
+      <ItemModal
+        closeModal={onClose}
+        data={cardData}
+        seePreview={seePreview}
+        weather={weather}
+      />
     </>
   );
 }

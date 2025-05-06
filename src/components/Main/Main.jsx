@@ -19,6 +19,8 @@ export default function Main(props) {
             name={card.name}
             weather={card.weather}
             link={card.link}
+            setCardData={props.setCardData}
+            setSeePreview={props.setSeePreview}
           />
         );
       });

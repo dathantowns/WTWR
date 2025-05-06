@@ -1,0 +1,62 @@
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s ease-in;
+  font-family: "Cabinet", sans-serif;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+
+.modal__content {
+  background-color: white;
+  width: 498px;
+  height: max-content;
+  border-radius: 16px;
+  padding-bottom: 32px;
+}
+
+.modal__img {
+  margin-bottom: 20px;
+  width: 498px;
+  height: 498px;
+  border-radius: 16px;
+}
+
+.modal__text {
+  margin-left: 32px;
+  margin-bottom: 0;
+}
+
+.modal__close-btn {
+  background-image: url(../../images/preview-close.svg);
+  background-size: cover;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  opacity: 1;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  opacity: 1;
+}
