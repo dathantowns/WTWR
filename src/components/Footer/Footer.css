@@ -1,0 +1,7 @@
+.footer {
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Cabinet";
+  margin-top: 171px;
+}

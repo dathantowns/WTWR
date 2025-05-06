@@ -10,8 +10,9 @@ export default function Header(props) {
   const userName = "Terrence Wiggins";
 
   function handleHeaderButtonClick() {
-    // NEEDS CODING!!!
-    console.log("open modalWithForm");
+    {
+      props.setSeeModal(true);
+    }
   }
 
   return (
@@ -26,7 +27,7 @@ export default function Header(props) {
           <button
             className="header__button"
             type="button"
-            onClick={handleHeaderButtonClick}
+            onClick={() => handleHeaderButtonClick()}
           >
             + Add clothes
           </button>
