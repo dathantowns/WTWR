@@ -2,6 +2,8 @@
 
 A React-based web application that uses real-time weather data to recommend clothing items. Users can add their own clothing items, and the app filters recommendations based on the current weather conditions. Built with [Vite](https://vitejs.dev/) for a fast, modern development experience.
 
+[Visit the Site](https://dathantowns.github.io/se_project_react/)
+
 ## Features
 
 - 🌤️ **Weather-Driven Recommendations**  
