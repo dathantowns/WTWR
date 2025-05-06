@@ -32,9 +32,7 @@ export default function Main(props) {
       <div className="main">
         <WeatherCard temp={props.temp} />
         <p className="main__weather-statement">{`Today is ${props.temp}°F / You may want to wear:`}</p>
-        <ul className="main__cards-list">
-          {renderCards(defaultClothingItems)}
-        </ul>
+        <ul className="main__cards-list">{renderCards(props.cards)}</ul>
       </div>
     </>
   );

@@ -1,7 +1,25 @@
 import { useState } from "react";
 import "./ModalWithForm.css";
+import ItemCard from "../Main/ItemCard/ItemCard";
 
 export default function ModalWithForm(props) {
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const newCard = {
+      name: e.target[1].value,
+
+      weather: props.weather,
+      link: e.target[2].value,
+      setCardData: props.setCardData,
+      setSeePreview: props.setSeePreview,
+      selected: props.selected,
+    };
+    props.setCards([...props.cards, newCard]);
+    console.log("Updated cards Array:", props.cards);
+    props.closeModal();
+  }
+
   return (
     <div
       className={props.seeModal ? "modal modal_opened" : "modal"}
@@ -17,7 +35,12 @@ export default function ModalWithForm(props) {
             onClick={props.closeModal}
           ></button>
         </div>
-        <form className={props.name} name="garment-form" id="garment-form">
+        <form
+          className={props.name}
+          name="garment-form"
+          id="garment-form"
+          onSubmit={handleFormSubmit}
+        >
           <fieldset className="modal__fieldset">
             {props.children}
             <button type="submit" className="modal__save-btn">

@@ -12,7 +12,7 @@ export default function ItemModal({ seePreview, closeModal, data, weather }) {
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
         <img src={url} alt="pic" className="modal__img" />
         <button
-          className="modal__close-btn modal__close-btn_preview"
+          className="modal__close-btn_preview"
           type="button"
           onClick={closeModal}
         ></button>

@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 import { requestWeatherInfo } from "../../utils/weatherApi";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weather, setWeather] = useState();
@@ -15,11 +16,18 @@ function App() {
   const [seePreview, setSeePreview] = useState(false);
   const [selected, setSelected] = useState("Hot");
   const [cardData, setCardData] = useState([]);
+  const [cards, setCards] = useState(defaultClothingItems);
+
   const options = ["Hot", "Warm", "Cold"];
 
   const onClose = () => {
     setSeeModal(false);
     setSeePreview(false);
+  };
+
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+    console.log("Selected:", selected);
   };
 
   useEffect(() => {
@@ -39,14 +47,22 @@ function App() {
         setSeePreview={setSeePreview}
         setCardData={setCardData}
         setSeePreview={setSeePreview}
+        cards={cards}
       />
       <Footer />
       <ModalWithForm
         closeModal={onClose}
         seeModal={seeModal}
+        selected={selected}
         title="Add garment"
         name="modal__form"
         buttonText="Add garment"
+        weather={weather}
+        setCardData={setCardData}
+        setSelected={setSelected}
+        setSeePreview={setSeePreview}
+        setCards={setCards}
+        cards={cards}
       >
         <label htmlFor="name" className="modal__label">
           Name
@@ -74,7 +90,7 @@ function App() {
         </label>
         {"Select the weather type:"}
         <ul className="modal__list">
-          <div className="temp-options">
+          <li className="temp-options">
             {options.map((opt) => (
               <label
                 key={opt}
@@ -85,12 +101,12 @@ function App() {
                   name="temperature"
                   value={opt}
                   checked={selected === opt}
-                  onChange={() => setSelected(opt)}
+                  onChange={handleChange}
                 />
                 {opt}
               </label>
             ))}
-          </div>
+          </li>
         </ul>
       </ModalWithForm>
       <ItemModal

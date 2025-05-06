@@ -45,7 +45,7 @@
   margin-bottom: 0;
 }
 
-.modal__close-btn {
+.modal__close-btn_preview {
   background-image: url(../../images/preview-close.svg);
   background-size: cover;
   width: 16px;
