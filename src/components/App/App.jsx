@@ -31,11 +31,13 @@ function App() {
   };
 
   useEffect(() => {
-    requestWeatherInfo().then((data) => {
-      setWeather(data.weather);
-      setTemp(data.temp);
-      setLocation(data.location);
-    });
+    requestWeatherInfo()
+      .then((data) => {
+        setWeather(data.weather);
+        setTemp(data.temp);
+        setLocation(data.location);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -46,7 +48,6 @@ function App() {
         weather={weather}
         setSeePreview={setSeePreview}
         setCardData={setCardData}
-        setSeePreview={setSeePreview}
         cards={cards}
       />
       <Footer />
@@ -64,7 +65,7 @@ function App() {
         setCards={setCards}
         cards={cards}
       >
-        <label htmlFor="name" className="modal__label">
+        <label htmlFor="name-input" className="modal__label">
           Name
           <input
             type="text"

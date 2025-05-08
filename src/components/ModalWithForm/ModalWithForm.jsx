@@ -8,7 +8,6 @@ export default function ModalWithForm(props) {
 
     const newCard = {
       name: e.target[1].value,
-
       weather: props.weather,
       link: e.target[2].value,
       setCardData: props.setCardData,

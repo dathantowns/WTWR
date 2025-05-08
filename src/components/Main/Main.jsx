@@ -14,7 +14,7 @@ export default function Main(props) {
       .map((card, i) => {
         return (
           <ItemCard
-            key={i}
+            key={card._id}
             id={card._id}
             name={card.name}
             weather={card.weather}

@@ -5,6 +5,7 @@
   position: relative;
   border-radius: 12px;
   background-size: cover;
+  cursor: pointer;
 }
 
 .item-card__title {
