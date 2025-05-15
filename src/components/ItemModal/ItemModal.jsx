@@ -3,11 +3,11 @@ import "./ItemModal.css";
 export default function ItemModal({
   seePreview,
   closeModal,
-  data,
   weather,
   openDeleteModal,
+  selectedItem,
 }) {
-  const [name, url] = data;
+  const [name, url] = selectedItem;
 
   return (
     <div

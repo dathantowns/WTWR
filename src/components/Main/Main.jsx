@@ -1,7 +1,6 @@
 import "./Main.css";
 import WeatherCard from "./WeatherCard/WeatherCard";
 import ItemCard from "./ItemCard/ItemCard";
-import { defaultClothingItems } from "../../utils/constants";
 import { useFc } from "../../contexts/FcContext";
 
 export default function Main(props) {
@@ -24,8 +23,8 @@ export default function Main(props) {
           id={card._id}
           name={card.name}
           weather={card.weather}
-          link={card.link}
-          setCardData={props.setCardData}
+          link={card.imageUrl}
+          setSelectedItem={props.setSelectedItem}
           setSeePreview={props.setSeePreview}
         />
       ));
@@ -40,7 +39,7 @@ export default function Main(props) {
       ) : (
         <p className="main__weather-statement">{`Today is ${props.tempC}°C / You may want to wear:`}</p>
       )}
-      <ul className="main__cards-list">{renderCards(props.cards)}</ul>
+      <ul className="main__cards-list">{renderCards(props.items)}</ul>
     </div>
   );
 }

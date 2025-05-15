@@ -2,7 +2,7 @@ import "./ItemCard.css";
 
 export default function ItemCard(props) {
   function handleCardClick(e) {
-    props.setCardData([props.name, props.link]);
+    props.setSelectedItem([props.name, props.link]);
     props.setSeePreview(true);
   }
 

@@ -11,6 +11,7 @@ import { defaultClothingItems } from "../../utils/constants";
 import { FcProvider } from "../../contexts/FcContext";
 import { Profile } from "../Profile/Profile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
+import { requestApiItems } from "../../utils/api";
 
 function App() {
   const [weather, setWeather] = useState();
@@ -22,7 +23,9 @@ function App() {
   const [seeDelete, setSeeDelete] = useState(false);
   const [selected, setSelected] = useState("Hot");
   const [cardData, setCardData] = useState([]);
-  const [cards, setCards] = useState(defaultClothingItems);
+  const [cards, setCards] = useState([]);
+  const [items, setItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState([]);
 
   const options = ["Hot", "Warm", "Cold"];
 
@@ -46,6 +49,8 @@ function App() {
         setLocation(data.location);
       })
       .catch((err) => console.log(err));
+
+    requestApiItems().then((items) => setItems([...items]));
   }, []);
 
   return (
@@ -61,8 +66,9 @@ function App() {
                 tempC={tempC}
                 weather={weather}
                 setSeePreview={setSeePreview}
-                setCardData={setCardData}
-                cards={cards}
+                setItems={setItems}
+                items={items}
+                setSelectedItem={setSelectedItem}
               />
             }
           />
@@ -131,7 +137,7 @@ function App() {
       </ModalWithForm>
       <ItemModal
         closeModal={onClose}
-        data={cardData}
+        selectedItem={selectedItem}
         seePreview={seePreview}
         weather={weather}
         openDeleteModal={() => setSeeDelete(true)}
