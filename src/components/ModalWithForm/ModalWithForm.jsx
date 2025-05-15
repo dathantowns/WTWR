@@ -14,7 +14,7 @@ export default function ModalWithForm(props) {
       setSeePreview: props.setSeePreview,
       selected: props.selected,
     };
-    props.setCards([...props.cards, newCard]);
+    props.setCards([newCard, ...props.cards]);
     console.log("Updated cards Array:", props.cards);
     props.closeModal();
   }

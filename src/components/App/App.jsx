@@ -10,6 +10,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { defaultClothingItems } from "../../utils/constants";
 import { FcProvider } from "../../contexts/FcContext";
 import { Profile } from "../Profile/Profile";
+import { DeleteModal } from "../DeleteModal/DeleteModal";
 
 function App() {
   const [weather, setWeather] = useState();
@@ -18,6 +19,7 @@ function App() {
   const [tempC, setTempC] = useState();
   const [seeModal, setSeeModal] = useState(false);
   const [seePreview, setSeePreview] = useState(false);
+  const [seeDelete, setSeeDelete] = useState(false);
   const [selected, setSelected] = useState("Hot");
   const [cardData, setCardData] = useState([]);
   const [cards, setCards] = useState(defaultClothingItems);
@@ -27,6 +29,7 @@ function App() {
   const onClose = () => {
     setSeeModal(false);
     setSeePreview(false);
+    setSeeDelete(false);
   };
 
   const handleChange = (event) => {
@@ -131,6 +134,13 @@ function App() {
         data={cardData}
         seePreview={seePreview}
         weather={weather}
+        openDeleteModal={() => setSeeDelete(true)}
+        closeDeleteModal={() => setSeeDelete(false)}
+      />
+      <DeleteModal
+        closeDeleteModal={() => setSeeDelete(false)}
+        closeModal={onClose}
+        seeDelete={seeDelete}
       />
     </>
   );

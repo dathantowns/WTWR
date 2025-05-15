@@ -60,3 +60,18 @@
   right: 24px;
   opacity: 1;
 }
+
+.modal__row {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 32px;
+}
+
+.modal__delete {
+  color: rgba(255, 77, 0, 1);
+  cursor: pointer;
+}
+
+.modal__delete:hover {
+  color: rgba(170, 77, 0, 1);
+}

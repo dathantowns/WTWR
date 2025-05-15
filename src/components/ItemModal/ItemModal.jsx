@@ -1,6 +1,12 @@
 import "./ItemModal.css";
 
-export default function ItemModal({ seePreview, closeModal, data, weather }) {
+export default function ItemModal({
+  seePreview,
+  closeModal,
+  data,
+  weather,
+  openDeleteModal,
+}) {
   const [name, url] = data;
 
   return (
@@ -16,7 +22,12 @@ export default function ItemModal({ seePreview, closeModal, data, weather }) {
           type="button"
           onClick={closeModal}
         ></button>
-        <p className="modal__text">{name}</p>
+        <div className="modal__row">
+          <p className="modal__text">{name}</p>
+          <p className="modal__delete" onClick={openDeleteModal}>
+            Delete item
+          </p>
+        </div>
         <p className="modal__text">Weather: {weather}</p>
       </div>
     </div>

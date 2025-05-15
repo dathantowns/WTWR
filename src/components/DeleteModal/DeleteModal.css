@@ -1,0 +1,99 @@
+.delete-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  font-family: "Cabinet", sans-serif;
+  font-size: 20px;
+  transition: visibility 0s linear 0.3s, opacity 0.3s ease-in;
+}
+
+.delete-modal_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+
+.delete-modal__container {
+  background-color: white;
+  padding-top: 60px;
+  width: 670px;
+  height: min-content;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-modal__img {
+  max-width: 80vw;
+  max-height: 80vh;
+  width: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.delete-modal__content {
+  position: relative;
+  padding: 0;
+}
+
+.delete-modal__content_delete {
+  position: static;
+  display: flex;
+}
+
+.delete-modal__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-modal__question {
+  margin: 0 auto;
+}
+
+.delete-modal__options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete-modal__delete {
+  margin: 40px 0 24px;
+  color: rgba(255, 77, 0, 1);
+  cursor: pointer;
+}
+
+.delete-modal__cancel {
+  margin: 0 0 60px;
+  cursor: pointer;
+}
+
+.delete-modal__close-btn {
+  background-image: url(../../images/close-button.svg);
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+  position: relative;
+  right: 40px;
+  top: 20px;
+  opacity: 1;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-modal__close-btn_delete:hover {
+  opacity: 0.4;
+}
