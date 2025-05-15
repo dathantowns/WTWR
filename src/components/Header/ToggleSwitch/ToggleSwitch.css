@@ -1,0 +1,61 @@
+.toggle-switch {
+  position: relative;
+  border: 2px solid rgba(126, 126, 126, 1);
+  border-radius: 20px;
+  width: 56px;
+  height: 28px;
+  display: flex;
+  font-family: "Cabinet", sans-serif;
+  font-size: 14px;
+  align-items: center;
+  color: rgba(126, 126, 126, 1);
+  cursor: pointer;
+  transition: color 0.5s ease, border 0.5s ease;
+  margin-right: 20px;
+}
+
+.toggle-switch:hover {
+  border: 2px solid black;
+  color: black;
+}
+
+.toggle-switch__circle {
+  position: absolute;
+  left: -2px;
+  border: 2px solid;
+  border-radius: 20px;
+  width: 28px;
+  height: 28px;
+  background-color: black;
+  z-index: 0;
+  border-color: black;
+  transition: left 0.5s ease;
+}
+
+.toggle-switch__circle_c {
+  left: 26px;
+}
+
+.toggle-switch__letter_f {
+  margin-left: 10px;
+
+  z-index: 1;
+}
+
+.toggle-switch__letter_c {
+  margin-left: 20px;
+
+  z-index: 1;
+}
+
+.selected {
+  color: white;
+}
+
+.visually-hidden {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}

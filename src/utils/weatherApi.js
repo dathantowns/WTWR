@@ -14,13 +14,15 @@ function requestWeatherInfo() {
       if (data.main.temp >= 86) {
         return {
           temp: data.main.temp,
+          tempC: Math.round(((data.main.temp - 32) * 5) / 9),
           weather: "hot",
           location: data.name,
           condition: data.weather[0].description,
         };
       } else if (data.main.temp >= 66) {
         return {
-          temp: data.main.temp,
+          temp: Math.round(data.main.temp),
+          tempC: Math.round(((data.main.temp - 32) * 5) / 9),
           weather: "warm",
           location: data.name,
           condition: data.weather[0].description,
@@ -28,6 +30,7 @@ function requestWeatherInfo() {
       } else {
         return {
           temp: data.main.temp,
+          tempC: Math.round(((data.main.temp - 32) * 5) / 9),
           weather: "cold",
           location: data.name,
           condition: data.weather[0].description,

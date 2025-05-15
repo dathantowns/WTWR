@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -7,11 +8,14 @@ import { requestWeatherInfo } from "../../utils/weatherApi";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { defaultClothingItems } from "../../utils/constants";
+import { FcProvider } from "../../contexts/FcContext";
+import { Profile } from "../Profile/Profile";
 
 function App() {
   const [weather, setWeather] = useState();
   const [location, setLocation] = useState();
   const [temp, setTemp] = useState();
+  const [tempC, setTempC] = useState();
   const [seeModal, setSeeModal] = useState(false);
   const [seePreview, setSeePreview] = useState(false);
   const [selected, setSelected] = useState("Hot");
@@ -35,6 +39,7 @@ function App() {
       .then((data) => {
         setWeather(data.weather);
         setTemp(data.temp);
+        setTempC(data.tempC);
         setLocation(data.location);
       })
       .catch((err) => console.log(err));
@@ -42,14 +47,25 @@ function App() {
 
   return (
     <>
-      <Header location={location} setSeeModal={setSeeModal} />
-      <Main
-        temp={temp}
-        weather={weather}
-        setSeePreview={setSeePreview}
-        setCardData={setCardData}
-        cards={cards}
-      />
+      <FcProvider>
+        <Header location={location} setSeeModal={setSeeModal} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                temp={temp}
+                tempC={tempC}
+                weather={weather}
+                setSeePreview={setSeePreview}
+                setCardData={setCardData}
+                cards={cards}
+              />
+            }
+          />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </FcProvider>
       <Footer />
       <ModalWithForm
         closeModal={onClose}
