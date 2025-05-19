@@ -1,0 +1,35 @@
+.clothes-section {
+  width: 100%;
+}
+
+.clothes__menu {
+  display: flex;
+}
+
+.clothes__title {
+  font-family: "Cabinet-Medium", sans-serif;
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.clothes__button {
+  border: none;
+  background: none;
+  font-family: "Cabinet-Medium", sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 100%;
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.clothes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style-type: none;
+  padding: 0;
+  gap: 21px;
+  margin-right: 40px;
+}

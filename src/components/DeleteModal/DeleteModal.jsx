@@ -1,8 +1,24 @@
 import "./DeleteModal.css";
 import React from "react";
+import { deleteApiItem } from "../../utils/api";
+import { useModal } from "../../contexts/modalContext";
 
 export const DeleteModal = React.memo(
-  ({ closeModal, seeDelete, closeDeleteModal }) => {
+  ({ seeDelete, closeDeleteModal, items, setItems, closeModal }) => {
+    const { selectedItem } = useModal();
+    const [name, url, id] = selectedItem;
+
+    const handleDeleteSubmit = () => {
+      deleteApiItem(id)
+        .then(() => {
+          const newArr = items.filter((obj) => obj._id !== id);
+          setItems(newArr);
+          closeModal();
+          closeDeleteModal();
+        })
+        .catch((err) => console.log(err));
+    };
+
     return (
       <div
         className={
@@ -26,7 +42,12 @@ export const DeleteModal = React.memo(
                 This action is irreversible.
               </p>
               <div className="delete-modal__options">
-                <p className="delete-modal__delete">Yes, delete item</p>
+                <p
+                  className="delete-modal__delete"
+                  onClick={handleDeleteSubmit}
+                >
+                  Yes, delete item
+                </p>
                 <p className="delete-modal__cancel" onClick={closeDeleteModal}>
                   Cancel
                 </p>

@@ -12,7 +12,7 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 0.3s, opacity 0.3s ease-in;
-  font-family: "Cabinet", sans-serif;
+  font-family: "Cabinet-Medium", sans-serif;
   color: rgba(0, 0, 0, 1);
   font-weight: 700;
   font-size: 16px;
@@ -148,7 +148,7 @@
   margin-top: 8px;
   margin-bottom: 8px;
   padding: 16px 0;
-  font-family: "Cabinet", sans-serif;
+  font-family: "Cabinet-Medium", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
@@ -203,7 +203,7 @@
   display: flex;
   align-items: center;
   font-weight: bold;
-  font-family: "Cabinet", sans-serif;
+  font-family: "Cabinet-Medium", sans-serif;
   font-size: 16px;
   line-height: 20px;
   color: gray;
@@ -288,81 +288,4 @@
 .modal__delete-btn_cancel:hover {
   background-color: rgba(33, 33, 33, 1);
   color: white;
-}
-
-@media screen and (max-width: 627px) {
-  .modal {
-    padding: 0 10px;
-  }
-
-  .modal__container {
-    padding: 12px;
-  }
-
-  .modal__content {
-    width: 96%;
-    min-width: 300px;
-  }
-
-  .modal__input {
-    width: 97%;
-    font-size: 20px;
-    line-height: 20px;
-  }
-
-  .modal__save-btn {
-    width: 100%;
-  }
-
-  .modal__img {
-    width: 100%;
-    max-width: none;
-  }
-
-  .modal__caption {
-    font-size: 16px;
-  }
-
-  .modal__title {
-    font-size: 20px;
-    line-height: 20px;
-    padding-top: 10px;
-  }
-
-  .modal__delete-form {
-    margin: 0;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .modal__delete-btn_delete {
-    margin: 20px 0 12px;
-  }
-
-  .modal__close-btn_delete {
-    top: 170px;
-    right: 20px;
-  }
-
-  .modal__question {
-    text-align: center;
-  }
-
-  .modal__delete-btn {
-    width: 156px;
-  }
-
-  .modal__close-btn_light {
-    top: -48px;
-    right: 0px;
-  }
-
-  .modal__close-btn_preview {
-    top: -48px;
-    right: 0px;
-  }
-
-  .modal__save-btn {
-    margin-bottom: 0;
-  }
 }

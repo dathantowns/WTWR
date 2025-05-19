@@ -24,10 +24,10 @@ export default function Main(props) {
           name={card.name}
           weather={card.weather}
           link={card.imageUrl}
-          setSelectedItem={props.setSelectedItem}
           setSeePreview={props.setSeePreview}
         />
       ));
+
     return renderedCards;
   }
 

@@ -1,8 +1,10 @@
 import "./ItemCard.css";
+import { useModal } from "../../../contexts/modalContext";
 
 export default function ItemCard(props) {
-  function handleCardClick(e) {
-    props.setSelectedItem([props.name, props.link]);
+  const { setSelectedItem } = useModal();
+  function handleCardClick() {
+    setSelectedItem([props.name, props.link, props.id]);
     props.setSeePreview(true);
   }
 
@@ -10,6 +12,7 @@ export default function ItemCard(props) {
     <li
       className="item-card"
       name={props.name}
+      id={props.id}
       style={{ backgroundImage: `url(${props.link})` }}
       onClick={handleCardClick}
     >

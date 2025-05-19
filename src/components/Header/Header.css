@@ -3,25 +3,37 @@
   src: url(../../vendor/cabinet-grotesk/CabinetGrotesk-Regular.otf) format(woff);
 }
 
+@font-face {
+  font-family: "Cabinet-Medium";
+  src: url(../../vendor/cabinet-grotesk/CabinetGrotesk-Medium.otf) format(woff);
+}
+
+@font-face {
+  font-family: "Cabinet-Bold";
+  src: url(../../vendor/cabinet-grotesk/CabinetGrotesk-Bold.otf) format(woff);
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   font-size: 20px;
-  font-weight: 700;
-  font-family: "Cabinet", sans-serif;
+
   padding: 32px 40px 0;
 }
 
 .header__menu {
   display: flex;
   align-items: center;
+  font-family: "Cabinet-Medium", sans-serif;
 }
 
 .header__date-logo {
   display: flex;
   align-items: center;
+  font-weight: 700;
+  font-family: "Cabinet", sans-serif;
 }
 
 .header__logo {
@@ -33,7 +45,7 @@
 .header__button {
   border: none;
   background: none;
-  font-family: "Cabinet", sans-serif;
+  font-family: "Cabinet-Medium", sans-serif;
   font-size: 20px;
   font-weight: normal;
   line-height: 24px;

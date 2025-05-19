@@ -5,7 +5,9 @@
   position: relative;
   border-radius: 12px;
   background-size: cover;
+  background-position: center;
   cursor: pointer;
+  font-family: "Cabinet", sans-serif;
 }
 
 .item-card__title {

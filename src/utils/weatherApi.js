@@ -11,15 +11,15 @@ function requestWeatherInfo() {
       Promise.reject(`Error: ${res.status}`);
     })
     .then((data) => {
-      if (data.main.temp >= 86) {
+      if (data.main.temp >= 79) {
         return {
-          temp: data.main.temp,
+          temp: Math.round(data.main.temp),
           tempC: Math.round(((data.main.temp - 32) * 5) / 9),
           weather: "hot",
           location: data.name,
           condition: data.weather[0].description,
         };
-      } else if (data.main.temp >= 66) {
+      } else if (data.main.temp >= 75) {
         return {
           temp: Math.round(data.main.temp),
           tempC: Math.round(((data.main.temp - 32) * 5) / 9),

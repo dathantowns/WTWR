@@ -1,14 +1,17 @@
 import "./ItemModal.css";
+import { useModal } from "../../contexts/modalContext";
 
 export default function ItemModal({
-  seePreview,
-  closeModal,
   weather,
   openDeleteModal,
-  selectedItem,
+  seePreview,
+  setSeePreview,
+  closeModal,
 }) {
-  const [name, url] = selectedItem;
+  const { selectedItem } = useModal();
 
+  const [name, url] = selectedItem ?? ["", ""];
+  if (!seePreview) return null;
   return (
     <div
       className={seePreview ? "modal modal_opened" : "modal"}

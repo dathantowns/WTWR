@@ -3,11 +3,15 @@ import React from "react";
 import { SideBar } from "./SideBar/SideBar";
 import { ClothesSection } from "./ClothesSection/ClothesSection";
 
-export const Profile = React.memo(() => {
+export const Profile = React.memo((props) => {
   return (
     <div className="profile">
       <SideBar />
-      <ClothesSection />
+      <ClothesSection
+        items={props.items}
+        setSeePreview={props.setSeePreview}
+        setSeeModal={props.setSeeModal}
+      />
     </div>
   );
 });

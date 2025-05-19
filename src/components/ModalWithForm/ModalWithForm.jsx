@@ -1,21 +1,25 @@
 import { useState } from "react";
 import "./ModalWithForm.css";
-import ItemCard from "../Main/ItemCard/ItemCard";
 
 export default function ModalWithForm(props) {
+  const getNextId = (items) => {
+    return items.length === 0 ? 1 : Math.max(...items.map((i) => i._id)) + 1;
+  };
+
   function handleFormSubmit(e) {
     e.preventDefault();
 
     const newCard = {
       name: e.target[1].value,
       weather: props.weather,
-      link: e.target[2].value,
+      imageUrl: e.target[2].value,
       setCardData: props.setCardData,
       setSeePreview: props.setSeePreview,
       selected: props.selected,
+      _id: getNextId(props.items),
     };
-    props.setCards([newCard, ...props.cards]);
-    console.log("Updated cards Array:", props.cards);
+    props.setItems([newCard, ...props.items]);
+    console.log("Updated cards Array:", props.items);
     props.closeModal();
   }
 
