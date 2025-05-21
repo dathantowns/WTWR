@@ -1,14 +1,9 @@
 import React from "react";
-import { useFc } from "../../../contexts/FcContext";
+import { useCTUContext } from "../../../contexts/CurrentTemperatureUnitContext";
 import "./ToggleSwitch.css";
 
 const ToggleSwitch = React.memo(() => {
-  const { toggleUnit, unit, isChecked, setIsChecked } = useFc();
-
-  const handleChange = (e) => {
-    setIsChecked(!isChecked);
-    toggleUnit(); // Optional: if this should run as well
-  };
+  const { handleToggleSwitchChange, currentTemperatureUnit } = useCTUContext();
 
   return (
     <label className="toggle-switch" htmlFor="unit-toggle">
@@ -16,33 +11,26 @@ const ToggleSwitch = React.memo(() => {
         id="unit-toggle"
         type="checkbox"
         name="header__fc-button"
-        checked={isChecked}
-        onChange={handleChange}
+        onChange={handleToggleSwitchChange}
         className="visually-hidden"
       />
 
       <div
-        className={
-          isChecked
-            ? "toggle-switch__circle toggle-switch__circle_c"
-            : "toggle-switch__circle"
-        }
+        className={`toggle-switch__circle ${
+          currentTemperatureUnit === "C" ? "toggle-switch__circle_c" : ""
+        }`}
       ></div>
       <p
-        className={
-          !isChecked
-            ? "toggle-switch__letter_f selected"
-            : "toggle-switch__letter_f"
-        }
+        className={` toggle-switch__letter_f ${
+          currentTemperatureUnit === "F" ? "selected" : ""
+        }`}
       >
         F
       </p>
       <p
-        className={
-          isChecked
-            ? "toggle-switch__letter_c selected"
-            : "toggle-switch__letter_c"
-        }
+        className={`toggle-switch__letter_c ${
+          currentTemperatureUnit === "C" ? "selected" : ""
+        }`}
       >
         C
       </p>

@@ -19,7 +19,6 @@ export default function ModalWithForm(props) {
       _id: getNextId(props.items),
     };
     props.setItems([newCard, ...props.items]);
-    console.log("Updated cards Array:", props.items);
     props.closeModal();
   }
 

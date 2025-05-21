@@ -5,3 +5,27 @@
   font-family: "Cabinet";
   margin-top: 171px;
 }
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0;
+  }
+}
+
+.footer__signature {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  animation: pulse 3s ease-in-out infinite;
+  transition: color 0.5s ease-in-out;
+}
+
+.footer__signature:hover {
+  color: orangered;
+}

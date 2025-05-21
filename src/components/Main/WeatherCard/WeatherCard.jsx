@@ -1,13 +1,12 @@
 import "./WeatherCard.css";
-import { useFc } from "../../../contexts/FcContext";
+import { useCTUContext } from "../../../contexts/CurrentTemperatureUnitContext";
 import React from "react";
 
 export default function WeatherCard(props) {
-  const { isChecked } = useFc();
-
+  const { currentTemperatureUnit } = useCTUContext();
   return (
     <div className="weather-card">
-      {!isChecked ? (
+      {currentTemperatureUnit === "F" ? (
         <p className="weather-card__weather">{props.temp}°F</p>
       ) : (
         <p className="weather-card__weather">{props.tempC}°C</p>

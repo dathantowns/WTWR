@@ -2,6 +2,14 @@ import "./ItemCard.css";
 import { useModal } from "../../../contexts/modalContext";
 
 export default function ItemCard(props) {
+  if (!props.name || !props.link || !props.id) {
+    return (
+      <div className="main">
+        <p>Loading item...</p>
+      </div>
+    );
+  }
+
   const { setSelectedItem } = useModal();
   function handleCardClick() {
     setSelectedItem([props.name, props.link, props.id]);

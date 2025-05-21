@@ -3,7 +3,9 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <div className="footer">
-      <p className="footer__signature">Developed by Day.</p>
+      <a href="https://github.com/dathantowns" className="footer__signature">
+        Developed by Day.
+      </a>
       {`2025`}
     </div>
   );

@@ -16,7 +16,14 @@ export const DeleteModal = React.memo(
           closeModal();
           closeDeleteModal();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if (err === "Error: 404") {
+            const newArr = items.filter((obj) => obj._id !== id);
+            setItems(newArr);
+            closeModal();
+            closeDeleteModal();
+          }
+        });
     };
 
     return (
