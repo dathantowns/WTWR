@@ -9,9 +9,9 @@ import ItemModal from "../ItemModal/ItemModal";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Profile } from "../Profile/Profile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
-import { requestApiItems } from "../../utils/api";
-import { ModalProvider } from "../../contexts/modalContext";
+import { requestApiItems, deleteApiItem, addApiItem } from "../../utils/api";
 import AddItemModal from "../AddItemModal";
+import { useModal } from "../../contexts/modalContext";
 
 function App() {
   const [weather, setWeather] = useState();
@@ -27,6 +27,8 @@ function App() {
   const [items, setItems] = useState([]);
 
   const options = ["Hot", "Warm", "Cold"];
+  const { selectedItem } = useModal();
+  const [, , id = ""] = selectedItem;
 
   const onClose = () => {
     setSeeModal(false);
@@ -40,6 +42,34 @@ function App() {
   const handleChange = (event) => {
     setSelected(event.target.value);
   };
+
+  const handleDeleteSubmit = () => {
+    deleteApiItem(id)
+      .then(() => {
+        const newArr = items.filter((obj) => obj._id !== id);
+        setItems(newArr);
+        setSeeDelete(false);
+        onClose();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const getNextId = (items) => {
+    return items.length === 0 ? 1 : Math.max(...items.map((i) => i._id)) + 1;
+  };
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const newCard = {
+      name: e.target[1].value,
+      weather: weather,
+      imageUrl: e.target[2].value,
+      _id: getNextId(items),
+    };
+    addApiItem(newCard).then((res) => setItems([res, ...items]));
+    onClose();
+  }
 
   useEffect(() => {
     requestWeatherInfo()
@@ -60,72 +90,64 @@ function App() {
         value={{ handleToggleSwitchChange, currentTemperatureUnit }}
       >
         <>
-          <ModalProvider>
-            <Header location={location} setSeeModal={setSeeModal} />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Main
-                    temp={temp}
-                    tempC={tempC}
-                    weather={weather}
-                    setSeePreview={setSeePreview}
-                    setItems={setItems}
-                    items={items}
-                  />
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <Profile
-                    items={items}
-                    setSeePreview={setSeePreview}
-                    setSeeModal={setSeeModal}
-                  />
-                }
-              />
-            </Routes>
+          <Header location={location} setSeeModal={setSeeModal} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  temp={temp}
+                  tempC={tempC}
+                  weather={weather}
+                  setSeePreview={setSeePreview}
+                  setItems={setItems}
+                  items={items}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  items={items}
+                  setSeePreview={setSeePreview}
+                  setSeeModal={setSeeModal}
+                />
+              }
+            />
+          </Routes>
 
-            <Footer />
-            {seeModal && (
-              <AddItemModal
-                closeModal={onClose}
-                seeModal={seeModal}
-                selected={selected}
-                weather={weather}
-                setSelected={setSelected}
-                setSeePreview={setSeePreview}
-                setCards={setCards}
-                cards={cards}
-                items={items}
-                setItems={setItems}
-                options={options}
-                handleChange={handleChange}
-              />
-            )}
-            {seePreview && (
-              <ItemModal
-                closeModal={onClose}
-                seePreview={seePreview}
-                setSeePreview={setSeePreview}
-                weather={weather}
-                openDeleteModal={() => setSeeDelete(true)}
-                closeDeleteModal={() => setSeeDelete(false)}
-              />
-            )}
+          <Footer />
+          {seeModal && (
+            <AddItemModal
+              closeModal={onClose}
+              seeModal={seeModal}
+              setCards={setCards}
+              cards={cards}
+              handleFormSubmit={handleFormSubmit}
+              options={options}
+              handleChange={handleChange}
+              selected={selected}
+            />
+          )}
+          {seePreview && (
+            <ItemModal
+              closeModal={onClose}
+              seePreview={seePreview}
+              setSeePreview={setSeePreview}
+              weather={weather}
+              openDeleteModal={() => setSeeDelete(true)}
+              closeDeleteModal={() => setSeeDelete(false)}
+            />
+          )}
 
-            {seeDelete && (
-              <DeleteModal
-                closeDeleteModal={() => setSeeDelete(false)}
-                closeModal={() => setSeePreview(false)}
-                seeDelete={seeDelete}
-                items={items}
-                setItems={setItems}
-              />
-            )}
-          </ModalProvider>
+          {seeDelete && (
+            <DeleteModal
+              closeDeleteModal={() => setSeeDelete(false)}
+              seeDelete={seeDelete}
+              deleteHandler={handleDeleteSubmit}
+            />
+          )}
         </>
       </CurrentTemperatureUnitContext.Provider>
     </div>

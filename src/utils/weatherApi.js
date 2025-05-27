@@ -1,15 +1,11 @@
 import { APIkey, latitude, longitude } from "../utils/constants";
+import { checkRes } from "./api";
 
 function requestWeatherInfo() {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   )
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      Promise.reject(`Error: ${res.status}`);
-    })
+    .then((res) => checkRes(res))
     .then((data) => {
       if (data.main.temp >= 79) {
         return {

@@ -14,7 +14,7 @@ export default function ItemModal({
   if (!seePreview) return null;
   return (
     <div
-      className={seePreview ? "modal modal_opened" : "modal"}
+      className={seePreview ? "item-modal modal_opened" : "item-modal"}
       id="preview-modal"
       onClick={closeModal}
     >

@@ -6,7 +6,7 @@ export default function Footer() {
       <a href="https://github.com/dathantowns" className="footer__signature">
         Developed by Day.
       </a>
-      {`2025`}
+      {new Date().getFullYear()}
     </div>
   );
 }

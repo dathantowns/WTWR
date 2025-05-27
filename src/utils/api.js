@@ -1,4 +1,4 @@
-const checkRes = (res) => {
+export const checkRes = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -17,7 +17,7 @@ export function deleteApiItem(cardId) {
 }
 
 export function addApiItem(card) {
-  return fetch(`${baseUrl}/items/${card._id}`, {
+  return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

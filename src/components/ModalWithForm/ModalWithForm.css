@@ -114,7 +114,7 @@
 }
 
 .modal__close-btn_preview {
-  background-image: url(../images/close-light.svg);
+  background-image: url(../../images/close-button.svg);
   position: absolute;
   top: 0;
   right: -52px;
@@ -150,7 +150,7 @@
   padding: 16px 0;
   font-family: "Cabinet-Medium", sans-serif;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 20px;
   border: none;
   border-bottom: 1px solid;
