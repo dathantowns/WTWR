@@ -63,7 +63,7 @@ function App() {
 
     const newCard = {
       name: e.target[1].value,
-      weather: weather,
+      weather: selected,
       imageUrl: e.target[2].value,
       _id: getNextId(items),
     };
@@ -118,36 +118,32 @@ function App() {
           </Routes>
 
           <Footer />
-          {seeModal && (
-            <AddItemModal
-              closeModal={onClose}
-              seeModal={seeModal}
-              setCards={setCards}
-              cards={cards}
-              handleFormSubmit={handleFormSubmit}
-              options={options}
-              handleChange={handleChange}
-              selected={selected}
-            />
-          )}
-          {seePreview && (
-            <ItemModal
-              closeModal={onClose}
-              seePreview={seePreview}
-              setSeePreview={setSeePreview}
-              weather={weather}
-              openDeleteModal={() => setSeeDelete(true)}
-              closeDeleteModal={() => setSeeDelete(false)}
-            />
-          )}
 
-          {seeDelete && (
-            <DeleteModal
-              closeDeleteModal={() => setSeeDelete(false)}
-              seeDelete={seeDelete}
-              deleteHandler={handleDeleteSubmit}
-            />
-          )}
+          <AddItemModal
+            closeModal={onClose}
+            seeModal={seeModal}
+            setCards={setCards}
+            cards={cards}
+            handleFormSubmit={handleFormSubmit}
+            options={options}
+            handleChange={handleChange}
+            selected={selected}
+          />
+
+          <ItemModal
+            closeModal={onClose}
+            seePreview={seePreview}
+            selected={selected}
+            weather={weather}
+            openDeleteModal={() => setSeeDelete(true)}
+            closeDeleteModal={() => setSeeDelete(false)}
+          />
+
+          <DeleteModal
+            closeDeleteModal={() => setSeeDelete(false)}
+            seeDelete={seeDelete}
+            deleteHandler={handleDeleteSubmit}
+          />
         </>
       </CurrentTemperatureUnitContext.Provider>
     </div>

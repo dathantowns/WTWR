@@ -5,7 +5,7 @@ export default function ItemModal({
   weather,
   openDeleteModal,
   seePreview,
-  setSeePreview,
+  selected,
   closeModal,
 }) {
   const { selectedItem } = useModal();
@@ -31,7 +31,7 @@ export default function ItemModal({
             Delete item
           </p>
         </div>
-        <p className="modal__text">Weather: {weather}</p>
+        <p className="modal__text">Weather: {selected}</p>
       </div>
     </div>
   );
