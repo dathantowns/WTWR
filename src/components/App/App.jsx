@@ -81,7 +81,9 @@ function App() {
       })
       .catch((err) => console.log(err));
 
-    requestApiItems().then((data) => setItems(data));
+    requestApiItems().then((data) => {
+      setItems(data);
+    });
   }, []);
 
   return (

@@ -15,6 +15,7 @@ export default function Main(props) {
   }
 
   function renderCards(cards) {
+    console.log(props.items);
     const renderedCards = cards
       .filter((card) => card.weather === props.weather)
       .map((card) => (

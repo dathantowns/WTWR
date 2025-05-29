@@ -18,6 +18,19 @@ export const ClothesSection = React.memo((props) => {
     return renderedCards;
   }
 
+  function getTimestampFromObjectId(objectId) {
+    const hexTimestamp = objectId.toString().substring(0, 8);
+    return new Date(parseInt(hexTimestamp, 16) * 1000);
+  }
+
+  function sortCardsByNewest(cards) {
+    return cards.slice().sort((a, b) => {
+      const aTime = getTimestampFromObjectId(a._id);
+      const bTime = getTimestampFromObjectId(b._id);
+      return bTime - aTime;
+    });
+  }
+
   function handleClothesButtonClick() {
     {
       props.setSeeModal(true);
@@ -37,7 +50,7 @@ export const ClothesSection = React.memo((props) => {
         </button>
       </div>
 
-      <ul className="clothes">{renderCards(props.items)}</ul>
+      <ul className="clothes">{renderCards(sortCardsByNewest(props.items))}</ul>
     </div>
   );
 });
