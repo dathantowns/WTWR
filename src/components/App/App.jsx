@@ -43,6 +43,10 @@ function App() {
     setSelected(event.target.value);
   };
 
+  const handleError = (err) => {
+    console.log(err);
+  };
+
   const handleDeleteSubmit = () => {
     deleteApiItem(id)
       .then(() => {
@@ -51,7 +55,7 @@ function App() {
         setSeeDelete(false);
         onClose();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => handleError(err));
   };
 
   const getNextId = (items) => {
@@ -67,8 +71,12 @@ function App() {
       imageUrl: e.target[2].value,
       _id: getNextId(items),
     };
-    addApiItem(newCard).then((res) => setItems([res, ...items]));
-    onClose();
+    addApiItem(newCard)
+      .then((res) => setItems([res, ...items]))
+      .then(() => {
+        onClose();
+      })
+      .catch((err) => handleError(err));
   }
 
   useEffect(() => {
@@ -79,11 +87,13 @@ function App() {
         setTempC(data.tempC);
         setLocation(data.location);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => handleError(err));
 
-    requestApiItems().then((data) => {
-      setItems(data);
-    });
+    requestApiItems()
+      .then((data) => {
+        setItems(data);
+      })
+      .catch((err) => handleError(err));
   }, []);
 
   return (
