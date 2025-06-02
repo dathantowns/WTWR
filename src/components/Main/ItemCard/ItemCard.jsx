@@ -2,7 +2,7 @@ import "./ItemCard.css";
 import { useModal } from "../../../contexts/modalContext";
 
 export default function ItemCard(props) {
-  if (!props.name || !props.link || !props.id) {
+  if (!props.name || !props.link || !props.id || !props.weather) {
     return (
       <div className="main">
         <p>Loading item...</p>
@@ -12,7 +12,7 @@ export default function ItemCard(props) {
 
   const { setSelectedItem } = useModal();
   function handleCardClick() {
-    setSelectedItem([props.name, props.link, props.id]);
+    setSelectedItem([props.name, props.link, props.id, props.weather]);
     props.setSeePreview(true);
   }
 

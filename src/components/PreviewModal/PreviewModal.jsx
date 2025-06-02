@@ -1,8 +1,7 @@
-import "./ItemModal.css";
+import "./PreviewModal.css";
 import { useModal } from "../../contexts/modalContext";
 
-export default function ItemModal({
-  weather,
+export default function PreviewModal({
   openDeleteModal,
   seePreview,
   selected,
@@ -10,7 +9,7 @@ export default function ItemModal({
 }) {
   const { selectedItem } = useModal();
 
-  const [name, url] = selectedItem ?? ["", ""];
+  const [name, url, , weather] = selectedItem ?? ["", ""];
   if (!seePreview) return null;
   return (
     <div
@@ -31,7 +30,7 @@ export default function ItemModal({
             Delete item
           </p>
         </div>
-        <p className="modal__text">Weather: {selected}</p>
+        <p className="modal__text">Weather: {weather}</p>
       </div>
     </div>
   );

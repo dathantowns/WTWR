@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import { requestWeatherInfo } from "../../utils/weatherApi";
-import ItemModal from "../ItemModal/ItemModal";
+import PreviewModal from "../PreviewModal/PreviewModal";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Profile } from "../Profile/Profile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
@@ -22,11 +22,11 @@ function App() {
   const [seeModal, setSeeModal] = useState(false);
   const [seePreview, setSeePreview] = useState(false);
   const [seeDelete, setSeeDelete] = useState(false);
-  const [selected, setSelected] = useState("Hot");
+  const [selected, setSelected] = useState("hot");
   const [cards, setCards] = useState([]);
   const [items, setItems] = useState([]);
 
-  const options = ["Hot", "Warm", "Cold"];
+  const options = ["hot", "warm", "cold"];
   const { selectedItem } = useModal();
   const [, , id = ""] = selectedItem;
 
@@ -142,11 +142,10 @@ function App() {
             selected={selected}
           />
 
-          <ItemModal
+          <PreviewModal
             closeModal={onClose}
             seePreview={seePreview}
             selected={selected}
-            weather={weather}
             openDeleteModal={() => setSeeDelete(true)}
             closeDeleteModal={() => setSeeDelete(false)}
           />
