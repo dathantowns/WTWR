@@ -5,7 +5,6 @@ import { useCTUContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 export default function Main(props) {
   const { currentTemperatureUnit } = useCTUContext();
-
   if (!props.weather || !props.temp || !props.tempC) {
     return (
       <div className="main">
@@ -15,7 +14,6 @@ export default function Main(props) {
   }
 
   function renderCards(cards) {
-    console.log(props.items);
     const renderedCards = cards
       .filter((card) => card.weather === props.weather)
       .map((card) => (
@@ -25,7 +23,10 @@ export default function Main(props) {
           name={card.name}
           weather={card.weather}
           link={card.imageUrl}
+          likes={card.likes}
+          owner={card.owner}
           setSeePreview={props.setSeePreview}
+          onCardLike={props.onCardLike}
         />
       ));
 
@@ -40,6 +41,7 @@ export default function Main(props) {
           ? `Today is ${props.temp}°F / You may want to wear:`
           : `Today is ${props.tempC}°C / You may want to wear:`}
       </p>
+
       <ul className="main__cards-list">{renderCards(props.items)}</ul>
     </div>
   );

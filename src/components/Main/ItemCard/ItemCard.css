@@ -1,6 +1,8 @@
 .item-card {
   height: calc((96vh - 80px - 63px) / 2);
   max-width: 100%;
+  width: 100%;
+  padding-top: 15px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   position: relative;
   border-radius: 12px;
@@ -8,17 +10,34 @@
   background-position: center;
   cursor: pointer;
   font-family: "Cabinet", sans-serif;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .item-card__title {
-  position: absolute;
   z-index: 1;
   background-color: white;
   border-radius: 4px;
   padding: 2px 12px;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
   color: rgba(0, 0, 0, 0.6);
   font-size: 16px;
+}
+
+.item-card__like-btn {
+  z-index: 1;
+  background-image: url(../../../images/notliked-icon.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+  width: 18px;
+  height: 15px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.item-card__like-btn_liked {
+  background-image: url(../../../images/liked-icon.svg);
 }

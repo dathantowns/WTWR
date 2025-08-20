@@ -1,4 +1,4 @@
-import ModalWithForm from "./ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({
   closeModal,
@@ -17,6 +17,7 @@ const AddItemModal = ({
       seeModal={seeModal}
       title="Add garment"
       name="modal__form"
+      modalId="add-item-modal"
       buttonText="Add garment"
       setCardData={setCardData}
       setCards={setCards}

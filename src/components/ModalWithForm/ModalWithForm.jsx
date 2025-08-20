@@ -5,7 +5,7 @@ export default function ModalWithForm(props) {
   return (
     <div
       className={props.seeModal ? "modal modal_opened" : "modal"}
-      id="post-modal"
+      id={props.modalId || "modal"}
       onClick={props.closeModal}
     >
       <div className="modal__container" onClick={(e) => e.stopPropagation()}>
@@ -19,8 +19,8 @@ export default function ModalWithForm(props) {
         </div>
         <form
           className={props.name}
-          name="garment-form"
-          id="garment-form"
+          name={props.name || "modal-form"}
+          id={props.formId || props.name || "modal-form"}
           onSubmit={props.handleFormSubmit}
         >
           <fieldset className="modal__fieldset">

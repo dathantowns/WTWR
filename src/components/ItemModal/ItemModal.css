@@ -75,3 +75,7 @@
 .modal__delete:hover {
   color: rgba(170, 77, 0, 1);
 }
+
+.modal__delete_hidden {
+  display: none;
+}

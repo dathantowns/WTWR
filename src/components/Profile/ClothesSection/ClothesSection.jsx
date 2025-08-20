@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import ItemCard from "../../Main/ItemCard/ItemCard";
 import "./ClothesSection.css";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 export const ClothesSection = React.memo((props) => {
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   function renderCards(cards) {
-    const renderedCards = cards.map((card) => (
+    const filteredCards = cards.filter(
+      (card) => card.owner === currentUser?._id
+    );
+    return filteredCards.map((card) => (
       <ItemCard
         key={card._id}
         id={card._id}
         name={card.name}
         weather={card.weather}
         link={card.imageUrl}
+        owner={card.owner}
         setSelectedItem={props.setSelectedItem}
         setSeePreview={props.setSeePreview}
       />
     ));
-    return renderedCards;
   }
 
   function getTimestampFromObjectId(objectId) {
