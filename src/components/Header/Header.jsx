@@ -29,6 +29,7 @@ export default function Header(props) {
           {`${currentDate}, ${props.location}`}
         </div>
         <div className="header__menu">
+          <ToggleSwitch />
           {isLoggedIn ? (
             <>
               <button
