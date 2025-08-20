@@ -12,7 +12,7 @@ export function requestApiItems() {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },
-  }).then((res) => checkRes(res));
+  }).then(checkRes);
 }
 
 export function deleteApiItem(cardId) {
@@ -21,7 +21,7 @@ export function deleteApiItem(cardId) {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },
-  }).then((res) => checkRes(res));
+  }).then(checkRes);
 }
 
 export function addApiItem(card) {
@@ -32,7 +32,7 @@ export function addApiItem(card) {
       Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify(card),
-  }).then((res) => checkRes(res));
+  }).then(checkRes);
 }
 
 export function getUserData(token) {
@@ -42,7 +42,7 @@ export function getUserData(token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => checkRes(res));
+  }).then(checkRes);
 }
 
 export function updateUserData(token, data) {
@@ -53,7 +53,7 @@ export function updateUserData(token, data) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
-  }).then((res) => checkRes(res));
+  }).then(checkRes);
 }
 
 export function likeItem(cardId) {
@@ -63,7 +63,7 @@ export function likeItem(cardId) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getToken()}`,
     },
-  }).then((res) => checkRes(res));
+  }).then(checkRes);
 }
 
 export function dislikeItem(cardId) {
@@ -73,7 +73,7 @@ export function dislikeItem(cardId) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getToken()}`,
     },
-  }).then((res) => checkRes(res));
+  }).then(checkRes);
 }
 
 export const getToken = () => localStorage.getItem("jwt");

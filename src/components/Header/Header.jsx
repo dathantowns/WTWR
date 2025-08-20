@@ -2,7 +2,7 @@ import headerLogo from "../../images/Logo.png";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
 import "./Header.css";
 
 export default function Header(props) {

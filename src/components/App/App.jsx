@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -12,6 +12,8 @@ import { DeleteModal } from "../DeleteModal/DeleteModal";
 import {
   requestApiItems,
   deleteApiItem,
+  likeItem,
+  dislikeItem,
   addApiItem,
   getUserData,
   updateUserData,
@@ -26,6 +28,7 @@ import { useModal } from "../../contexts/modalContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
+  const navigate = useNavigate();
   const [weather, setWeather] = useState();
   const [location, setLocation] = useState();
   const [temp, setTemp] = useState();
@@ -118,8 +121,27 @@ function App() {
     register(userData)
       .then((data) => {
         console.log("Registration successful:", data);
+        return login({ email: userData.email, password: userData.password });
+      })
+      .then((loginData) => {
+        if (loginData && loginData.token) {
+          localStorage.setItem("jwt", loginData.token);
+        }
         setIsLoggedIn(true);
         setSeeRegisterModal(false);
+        const token = loginData?.token || localStorage.getItem("jwt");
+        if (token) {
+          getUserData(token)
+            .then((userData) => {
+              setCurrentUser(userData.data);
+            })
+            .catch((err) => {
+              console.error(
+                "Failed to fetch user data after registration:",
+                err
+              );
+            });
+        }
       })
       .catch((error) => {
         console.error("Registration error:", error);
@@ -194,6 +216,40 @@ function App() {
       .catch((err) => handleError(err));
   }, []);
 
+  // Handles like/dislike and updates top-level items state
+  const handleCardLike = (cardId, isLiked) => {
+    if (!currentUser) return;
+    if (!isLiked) {
+      likeItem(cardId)
+        .then((updatedCard) => {
+          console.log("Card liked:", updatedCard);
+          setItems((prevItems) =>
+            prevItems.map((item) =>
+              item._id === cardId ? updatedCard.data : item
+            )
+          );
+        })
+        .catch((err) => console.error(err));
+    } else {
+      dislikeItem(cardId)
+        .then((updatedCard) => {
+          setItems((prevItems) =>
+            prevItems.map((item) =>
+              item._id === cardId ? updatedCard.data : item
+            )
+          );
+        })
+        .catch((err) => console.error(err));
+    }
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("jwt");
+    setCurrentUser(null);
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   return (
     <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="App">
@@ -218,7 +274,7 @@ function App() {
                     setSeePreview={setSeePreview}
                     setItems={setItems}
                     items={items}
-                    // onCardLike={handleCardLike}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -231,6 +287,7 @@ function App() {
                       setSeePreview={setSeePreview}
                       setSeeModal={setSeeModal}
                       setSeeEditProfileModal={setSeeEditProfileModal}
+                      handleLogOut={handleLogOut}
                     />
                   </ProtectedRoute>
                 }

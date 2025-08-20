@@ -6,7 +6,10 @@ import { ClothesSection } from "./ClothesSection/ClothesSection";
 export const Profile = React.memo((props) => {
   return (
     <div className="profile">
-      <SideBar setSeeEditProfileModal={props.setSeeEditProfileModal} />
+      <SideBar
+        setSeeEditProfileModal={props.setSeeEditProfileModal}
+        handleLogOut={props.handleLogOut}
+      />
       <ClothesSection
         items={props.items}
         setSeePreview={props.setSeePreview}

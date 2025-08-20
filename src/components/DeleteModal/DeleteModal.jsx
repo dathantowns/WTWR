@@ -6,11 +6,11 @@ export const DeleteModal = React.memo(
     return (
       <div
         className={
-          seeDelete == true
+          seeDelete === true
             ? "delete-modal delete-modal_opened"
             : "delete-modal"
         }
-        id="delete-modal "
+        id="delete-modal"
         onClick={closeDeleteModal}
       >
         <div

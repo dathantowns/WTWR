@@ -39,20 +39,8 @@ export default function ItemCard(props) {
   }
 
   function handleCardLike() {
-    if (!currentUser) return;
-    if (!isLiked) {
-      likeItem(props.id)
-        .then(() => {
-          setIsLiked(true);
-        })
-        .catch((err) => console.error(err));
-    }
-    if (isLiked) {
-      dislikeItem(props.id)
-        .then(() => {
-          setIsLiked(false);
-        })
-        .catch((err) => console.error(err));
+    if (props.onCardLike) {
+      props.onCardLike(props.id, isLiked);
     }
   }
 

@@ -4,11 +4,11 @@ const ProtectedRoute = ({ children, isLoggedIn, anonymous = false }) => {
   const location = useLocation();
 
   if (anonymous && isLoggedIn) {
-    return <Navigate to={from} />;
+    return <Navigate to="/" state={{ from: location }} />;
   }
 
   if (!anonymous && !isLoggedIn) {
-    return <Navigate to="/login" state={{ from: location }} />;
+    return <Navigate to="/" state={{ from: location }} />;
   }
 
   return children;

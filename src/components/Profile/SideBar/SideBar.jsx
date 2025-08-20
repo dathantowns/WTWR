@@ -5,18 +5,11 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SideBar(props) {
-  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const { name, avatar } = currentUser || {};
-  const navigate = useNavigate();
 
   const handleEditProfileClick = () => {
     props.setSeeEditProfileModal(true);
-  };
-
-  const handleLogOut = () => {
-    localStorage.removeItem("jwt");
-    setCurrentUser(null);
-    navigate("/");
   };
 
   return (
@@ -35,7 +28,7 @@ function SideBar(props) {
         <p className="sideBar__menu-item" onClick={handleEditProfileClick}>
           Change profile data
         </p>
-        <p className="sideBar__menu-item" onClick={handleLogOut}>
+        <p className="sideBar__menu-item" onClick={props.handleLogOut}>
           Log Out
         </p>
       </div>
