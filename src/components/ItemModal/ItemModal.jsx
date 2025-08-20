@@ -3,12 +3,7 @@ import { useModal } from "../../contexts/modalContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-export default function ItemModal({
-  openDeleteModal,
-  seePreview,
-  selected,
-  closeModal,
-}) {
+function ItemModal({ openDeleteModal, seePreview, selected, closeModal }) {
   const { selectedItem } = useModal();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
@@ -45,3 +40,5 @@ export default function ItemModal({
     </div>
   );
 }
+
+export default ItemModal;

@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import { requestWeatherInfo } from "../../utils/weatherApi";
-import ItemModal from "../ItemModal/ItemModal";
+import { ItemModal } from "../ItemModal/ItemModal";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Profile } from "../Profile/Profile";
 import { DeleteModal } from "../DeleteModal/DeleteModal";
