@@ -2,9 +2,12 @@ import "./Main.css";
 import WeatherCard from "./WeatherCard/WeatherCard";
 import ItemCard from "./ItemCard/ItemCard";
 import { useCTUContext } from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 export default function Main(props) {
   const { currentTemperatureUnit } = useCTUContext();
+  const { currentUser } = useContext(CurrentUserContext);
   if (!props.weather || !props.temp || !props.tempC) {
     return (
       <div className="main">
@@ -14,23 +17,32 @@ export default function Main(props) {
   }
 
   function renderCards(cards) {
-    const renderedCards = cards
-      .filter((card) => card.weather === props.weather)
-      .map((card) => (
-        <ItemCard
-          key={card._id}
-          id={card._id}
-          name={card.name}
-          weather={card.weather}
-          link={card.imageUrl}
-          likes={card.likes}
-          owner={card.owner}
-          setSeePreview={props.setSeePreview}
-          onCardLike={props.onCardLike}
-        />
-      ));
-
-    return renderedCards;
+    let filteredCards;
+    if (!currentUser) {
+      filteredCards = cards.filter(
+        (card) => card.weather === props.weather && card._id === card.owner
+      );
+    } else {
+      filteredCards = cards.filter((card) => {
+        return (
+          card.weather === props.weather &&
+          (card._id === card.owner || card.owner === currentUser._id)
+        );
+      });
+    }
+    return filteredCards.map((card) => (
+      <ItemCard
+        key={card._id}
+        id={card._id}
+        name={card.name}
+        weather={card.weather}
+        link={card.imageUrl}
+        likes={card.likes}
+        owner={card.owner}
+        setSeePreview={props.setSeePreview}
+        onCardLike={props.onCardLike}
+      />
+    ));
   }
 
   return (

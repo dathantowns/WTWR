@@ -14,6 +14,7 @@ export const Profile = React.memo((props) => {
         items={props.items}
         setSeePreview={props.setSeePreview}
         setSeeModal={props.setSeeModal}
+        onCardLike={props.onCardLike}
       />
     </div>
   );

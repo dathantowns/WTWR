@@ -16,9 +16,11 @@ export const ClothesSection = React.memo((props) => {
         name={card.name}
         weather={card.weather}
         link={card.imageUrl}
+        likes={card.likes}
         owner={card.owner}
         setSelectedItem={props.setSelectedItem}
         setSeePreview={props.setSeePreview}
+        onCardLike={props.onCardLike}
       />
     ));
   }

@@ -166,7 +166,7 @@ function App() {
       _id: getNextId(items),
     };
     addApiItem(newCard)
-      .then((res) => setItems([res, ...items]))
+      .then((res) => setItems([...items, res.data]))
       .then(() => {
         onClose();
       })
@@ -288,6 +288,7 @@ function App() {
                       setSeeModal={setSeeModal}
                       setSeeEditProfileModal={setSeeEditProfileModal}
                       handleLogOut={handleLogOut}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

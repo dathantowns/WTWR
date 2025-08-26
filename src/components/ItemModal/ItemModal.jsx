@@ -1,16 +1,21 @@
 import "./ItemModal.css";
 import { useModal } from "../../contexts/modalContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 function ItemModal({ openDeleteModal, seePreview, selected, closeModal }) {
   const { selectedItem } = useModal();
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-
   const { owner, url, name, weather } = selectedItem;
+  const [isOwn, setIsOwn] = useState(false);
+  useEffect(() => {
+    if (currentUser && owner) {
+      setIsOwn(owner === currentUser._id);
+    } else {
+      setIsOwn(false);
+    }
+  }, [currentUser, owner]);
   if (!seePreview) return null;
-
-  const isOwn = owner === currentUser._id;
 
   const itemDeleteButtonClassName = `modal__delete ${
     isOwn ? "" : "modal__delete_hidden"

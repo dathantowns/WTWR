@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
 const LoginModal = ({
@@ -10,7 +10,6 @@ const LoginModal = ({
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -23,10 +22,15 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLoginSubmit({ email, password });
-    // Reset form
-    setEmail("");
-    setPassword("");
   };
+
+  // Reset form when modal opens
+  useEffect(() => {
+    if (seeModal) {
+      setEmail("");
+      setPassword("");
+    }
+  }, [seeModal]);
 
   const handleRegisterClick = () => {
     closeModal();
@@ -34,82 +38,58 @@ const LoginModal = ({
   };
 
   return (
-    <div
-      className={seeModal ? "login-modal login-modal_opened" : "login-modal"}
-      id="login-modal"
-      onClick={closeModal}
+    <ModalWithForm
+      seeModal={seeModal}
+      closeModal={closeModal}
+      title="Log in"
+      name="login-form"
+      formId="login-form"
+      handleFormSubmit={handleSubmit}
+      buttonText="Log in"
     >
-      <div
-        className="login-modal__container"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="login-modal__header">
-          <h2 className="login-modal__title">Log in</h2>
-          <button
-            className="login-modal__close-btn"
-            type="button"
-            onClick={closeModal}
-          ></button>
-        </div>
-        <form
-          className="login-form"
-          name="login-form"
-          id="login-form"
-          onSubmit={handleSubmit}
+      <label htmlFor="login-email-input" className="login-modal__label">
+        Email
+        <input
+          type="email"
+          className="login-modal__input"
+          id="login-email-input"
+          placeholder="Email"
+          value={email}
+          onChange={handleEmailChange}
+          required
+        />
+        <span
+          className="login-modal__input-error"
+          id="login-email-error"
+        ></span>
+      </label>
+      <label htmlFor="login-password-input" className="login-modal__label">
+        Password
+        <input
+          type="password"
+          className="login-modal__input"
+          id="login-password-input"
+          placeholder="Password"
+          value={password}
+          onChange={handlePasswordChange}
+          required
+          minLength="6"
+        />
+        <span
+          className="login-modal__input-error"
+          id="login-password-error"
+        ></span>
+      </label>
+      <div className="login-modal__button-container">
+        <button
+          type="button"
+          className="login-modal__register-btn"
+          onClick={handleRegisterClick}
         >
-          <fieldset className="login-modal__fieldset">
-            <label htmlFor="login-email-input" className="login-modal__label">
-              Email
-              <input
-                type="email"
-                className="login-modal__input"
-                id="login-email-input"
-                placeholder="Email"
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
-              <span
-                className="login-modal__input-error"
-                id="login-email-error"
-              ></span>
-            </label>
-            <label
-              htmlFor="login-password-input"
-              className="login-modal__label"
-            >
-              Password
-              <input
-                type="password"
-                className="login-modal__input"
-                id="login-password-input"
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-                minLength="6"
-              />
-              <span
-                className="login-modal__input-error"
-                id="login-password-error"
-              ></span>
-            </label>
-            <div className="login-modal__button-container">
-              <button type="submit" className="login-modal__save-btn">
-                Log in
-              </button>
-              <button
-                type="button"
-                className="login-modal__register-btn"
-                onClick={handleRegisterClick}
-              >
-                or Register
-              </button>
-            </div>
-          </fieldset>
-        </form>
+          or Register
+        </button>
       </div>
-    </div>
+    </ModalWithForm>
   );
 };
 

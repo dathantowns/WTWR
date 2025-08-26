@@ -5,7 +5,7 @@ export const checkRes = (res) => {
   return Promise.reject(`Error: ${res.status}`);
 };
 
-const baseUrl = "http://localhost:3001";
+export const baseUrl = "http://localhost:3001";
 
 export function requestApiItems() {
   return fetch(`${baseUrl}/items`, {
